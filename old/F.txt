@@ -1,0 +1,16 @@
+	(1)
+VARIABLES	ivreg2
+	
+SNU	-2.764***
+	(0.455)
+p78n	-0.473***
+	(0.0807)
+edad	-0.0446***
+	(0.00462)
+Constant	14.67***
+	(0.650)
+	
+Observations	11,683
+R-squared	-0.144
+Robust standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	
