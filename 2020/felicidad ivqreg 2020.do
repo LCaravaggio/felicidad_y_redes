@@ -231,6 +231,23 @@ outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Se
 
 
 
+*Prueba de Wald para sexo
+ivreg2 sat edad capital (SNU = internet) if sexo==1, robust
+matrix b1 = e(b)
+matrix V1 = e(V)
+
+ivreg2 sat edad capital (SNU = internet) if sexo==0, robust
+matrix b2 = e(b)
+matrix V2 = e(V)
+
+matrix diff = b1 - b2  // Diferencia de coeficientes
+matrix Vdiff = V1 + V2 // Suma de las varianzas
+
+matrix chi2 = diff*inv(Vdiff)*diff' // Estadístico de prueba de Wald
+display "Chi2(1) = " chi2[1,1]
+display "p-value = " chiprob(1, chi2[1,1])
+
+
 
 ***** CIUDAD GRANDE ****
 * Regresión lineal MCO
@@ -274,6 +291,23 @@ estimates store B
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Ciudad.tex", tex(frag  land) ctitle("<100000") append fmt(fc) dec(2) nor2 e(rkf) 
 
 
+
+
+*Prueba de Wald para capital
+ivreg2 sat edad  (SNU=internet) if capital==1, robust 
+matrix b1 = e(b)
+matrix V1 = e(V)
+
+ivreg2 sat edad  (SNU=internet) if capital==0, robust 
+matrix b2 = e(b)
+matrix V2 = e(V)
+
+matrix diff = b1 - b2  
+matrix Vdiff = V1 + V2 
+
+matrix chi2 = diff*inv(Vdiff)*diff' 
+display "Chi2(1) = " chi2[1,1]
+display "p-value = " chiprob(1, chi2[1,1])
 
 ***** SENSIBILIDAD ****
 quietly ivreg2 sat edad capital sexo (SNU=internet) , robust first
