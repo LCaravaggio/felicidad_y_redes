@@ -191,40 +191,70 @@ quietly ivreg2 sat edad capital (SNU=internet) if sexo==0, robust first
 estimates store C
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Sexo 2018.tex", tex(frag  land) ctitle("IV") append fmt(fc) dec(2) nor2 e(rkf) 
 
+*Prueba de Wald para sexo
+ivreg2 sat edad capital (SNU = internet) if sexo==1, robust
+matrix b1 = e(b)
+matrix V1 = e(V)
 
+ivreg2 sat edad capital (SNU = internet) if sexo==0, robust
+matrix b2 = e(b)
+matrix V2 = e(V)
+
+matrix diff = b1 - b2  // Diferencia de coeficientes
+matrix Vdiff = V1 + V2 // Suma de las varianzas
+
+matrix chi2 = diff*inv(Vdiff)*diff' // Estadístico de prueba de Wald
+display "Chi2(1) = " chi2[1,1]
+display "p-value = " chiprob(1, chi2[1,1])
 
 
 ***** CIUDAD GRANDE ****
 * Regresión lineal MCO
-quietly reg sat SNU edad capital if capital==1, robust
+quietly reg sat SNU edad  if capital==1, robust
 estimates store A
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Capital 2018.tex", tex(frag land) ctitle("MCO") replace fmt(fc) dec(2) nor2
 
 *First Stage
-quietly reg SNU internet edad capital if capital==1, robust
+quietly reg SNU internet edad  if capital==1, robust
 estimates store B
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Capital 2018.tex", tex(frag land) ctitle("FS") append fmt(fc) dec(2) nor2
 
 * IV
-quietly ivreg2 sat edad capital (SNU=internet) if capital==1, robust first
+quietly ivreg2 sat edad  (SNU=internet) if capital==1, robust first
 estimates store C
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Capital 2018.tex", tex(frag  land) ctitle("IV") append fmt(fc) dec(2) nor2 e(rkf) 
 
 * Regresión lineal MCO
-quietly reg sat SNU edad capital if capital==0, robust
+quietly reg sat SNU edad if capital==0, robust
 estimates store A
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Capital 2018.tex", tex(frag land) ctitle("MCO") append fmt(fc) dec(2)  nor2 
 
 *First Stage
-quietly reg SNU internet edad capital if capital==0, robust
+quietly reg SNU internet edad  if capital==0, robust
 estimates store B
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Capital 2018.tex", tex(frag  land) ctitle("FS") append fmt(fc) dec(2)  nor2
 
 * IV
-quietly ivreg2 sat edad capital (SNU=internet) if capital==0, robust first
+quietly ivreg2 sat edad  (SNU=internet) if capital==0, robust first
 estimates store C
 outreg2 using "C:\Users\lcaravaggio_mecon\Desktop\Doctorado\felicidad_ivqreg2\Capital 2018.tex", tex(frag  land) ctitle("IV") append fmt(fc) dec(2) nor2 e(rkf) 
 
+
+*Prueba de Wald para capital
+ivreg2 sat edad  (SNU=internet) if capital==1, robust 
+matrix b1 = e(b)
+matrix V1 = e(V)
+
+ivreg2 sat edad  (SNU=internet) if capital==0, robust 
+matrix b2 = e(b)
+matrix V2 = e(V)
+
+matrix diff = b1 - b2  
+matrix Vdiff = V1 + V2 
+
+matrix chi2 = diff*inv(Vdiff)*diff' 
+display "Chi2(1) = " chi2[1,1]
+display "p-value = " chiprob(1, chi2[1,1])
 
 
 ***** SENSIBILIDAD ****
