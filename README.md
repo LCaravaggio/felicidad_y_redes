@@ -6,6 +6,9 @@ Con la irrupción de la pandemia de COVID-19 se produjo un fuerte proceso de dig
 
 Keywords: Felicidad, Bienestar, Redes Sociales, COVID-19, adicción digital
 
+## Estado
+El trabajo fue publicado por la [Revista de Economía del Rosario](https://revistas.urosario.edu.co) en 2024: https://revistas.urosario.edu.co/index.php/economia/article/view/15552 </br>
+
 ## How to cite
 ```
 @article{Caravaggio2024,
