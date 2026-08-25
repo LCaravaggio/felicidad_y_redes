@@ -9,6 +9,8 @@ Keywords: Felicidad, Bienestar, Redes Sociales, COVID-19, adicción digital
 ## Estado
 El trabajo fue publicado por la [Revista de Economía del Rosario](https://revistas.urosario.edu.co) en 2025: https://revistas.urosario.edu.co/index.php/economia/article/view/15552 </br>
 
+Video presentación: [ver](https://www.youtube.com/watch?v=WMg05Zpd674)
+
 ## How to cite
 ```
 @article{Caravaggio2024,
